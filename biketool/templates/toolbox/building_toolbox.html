@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Building
+{% endblock title %}
+
+
+{% block main %}
+<h1>{{ building.Adress }}</h1>
+{% for toolbox in building.toolbox_set.all %}
+<ul>
+    <li><h2>Tool box number:{{ Toolbox.id }}</h2>
+        {% if Toolbox.rent_status == 'A' %} 
+            <p>The tool box is kept until</p>
+    	    <p>{{ Toolbox.Avaiable_date }}</p>    
+        {% else %}
+            <p>The toolbox avaible to book</p>   
+        {% endif %}
+
+    </li>
+</ul>   
+ 
+{% endfor %}
+       
+{% endblock main %}
+    

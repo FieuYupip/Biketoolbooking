@@ -19,7 +19,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.index, name='home page'),
-    path('dashboard/',views.building_list, name='dashboard'),
-    path('dashboard/<int:building_ID>', views.building_toolbox, name='building_toolbox' )
-]
+   path('toolbox/', views.ToolboxListView.as_view()),
+   path('toolbox/<pk>', views.ToolboxDetailView.as_view()),
+   ]

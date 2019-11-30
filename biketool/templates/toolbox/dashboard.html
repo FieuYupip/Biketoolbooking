@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock title %}
+
+
+{% block main %}
+<p><b>Choose your address:</b></p>
+
+{% for building in buildings  %}
+<ul><li><a href="{{ building.get_absolute_url }}">{{ building.Adress }}</a></li></ul>    
+{% endfor %}
+       
+{% endblock main %}
+    

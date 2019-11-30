@@ -1,20 +1,20 @@
 from django.db import models
 from django.urls import reverse
-import datetime
-from datetime import timedelta
+
 class Toolbox(models.Model):
     class Meta:
         verbose_name = 'Toolbox'
         verbose_name_plural = 'Toolboxs'
 
     # TODO: Define fields here
+    building = models.ForeignKey('Building', on_delete = models.CASCADE, related_name='toolbox')
+
     STATUS = [('A','Avaible'),
             ('U','Unavaiable'),
     ]
     Rent_status = models.CharField(max_length=1, choices= STATUS)
-    building = models.ForeignKey('Building', on_delete = models.CASCADE, related_name='Toolbox')
-    Rent_date = models.DateTimeField(null=True, blank = True)
-    Avaiable_date = models.DateTimeField(null=True, blank = True)
+    Rent_date = models.DateField(null=True, blank = True)
+    Avaiable_date = models.DateField(null=True, blank = True)
 
     class Meta:
         ordering = ['-pk']
@@ -22,7 +22,7 @@ class Toolbox(models.Model):
         verbose_name_plural = 'Toolboxes'
 
     def __str__(self):
-        return 'Toolbox ID %, Buidling %, Status %' % (self.pk, self.building, self.Rent_status)
+        return 'Toolbox ID %s, Buidling %s, Status %s' % (self.pk, self.building, self.Rent_status)
 
     def get_absolute_url(self):
         return reverse('Toolbox_view', kwargs={'pk': self.pk})
@@ -32,11 +32,9 @@ class Building(models.Model):
 
     class Meta:
         ordering = ['-Adress']
-        verbose_name = 'Adress'
-        verbose_name_plural = 'Adressses'
 
     def __str__(self):
         return self.Adress
     
     def get_absolute_url(self):
-        return reverse('address_views', args = [self.pk])
+        return reverse('building_toolbox', args = [self.pk])
