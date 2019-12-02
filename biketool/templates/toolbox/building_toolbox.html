@@ -7,7 +7,7 @@ Building
 
 {% block main %}
 <h1>{{ building.Adress }}</h1>
-{% for toolbox in building.toolbox_set.all %}
+{% for toolbox in building.toolboxes.all %}
 <ul>
     <li><h2>Tool box number:{{ toolbox.id }}</h2>
         {% if toolbox.rent_status == 'A' %} 

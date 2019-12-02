@@ -7,7 +7,7 @@ class Toolbox(models.Model):
         verbose_name_plural = 'Toolboxs'
 
     # TODO: Define fields here
-    building = models.ForeignKey('Building', on_delete = models.CASCADE, related_name='toolbox')
+    building = models.ForeignKey('Building', on_delete = models.CASCADE, related_name='toolboxes')
 
     STATUS = [('A','Avaible'),
             ('U','Unavaiable'),

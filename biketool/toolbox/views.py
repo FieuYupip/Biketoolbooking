@@ -17,8 +17,8 @@ def building_list(request):
 
 def building_toolbox(request, building_ID):
     building = get_object_or_404(Building, pk = building_ID)
-    for toolbox in building.toolbox_set.all():
-        print(toolbox.id)
+    u = building.toolboxes.all()
+    print(u)
     context = {
             'building': building,
         }
