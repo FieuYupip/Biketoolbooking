@@ -13,8 +13,7 @@ class Toolbox(models.Model):
             ('U','Unavaiable'),
     ]
     Rent_status = models.CharField(max_length=1, choices= STATUS)
-    Rent_date = models.DateField(null=True, blank = True)
-    Avaiable_date = models.DateField(null=True, blank = True)
+
 
     class Meta:
         ordering = ['-pk']
@@ -38,3 +37,15 @@ class Building(models.Model):
     
     def get_absolute_url(self):
         return reverse('building_toolbox', args = [self.pk])
+
+class Toolbox_rental(models.Model):
+    Toolbox_id = models.ForeignKey('Toolbox', on_delete = models.CASCADE)
+    Rent_date = models.DateField(null=True, blank = True)
+    Avaiable_date = models.DateField(null=True, blank = True)
+
+    class Meta:
+        ordering = ['-Toolbox_id']
+
+
+    def __str__(self):
+        return self.Toolbox_id
